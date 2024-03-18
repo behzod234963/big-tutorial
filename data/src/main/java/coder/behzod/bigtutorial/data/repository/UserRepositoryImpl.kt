@@ -1,20 +1,21 @@
 package coder.behzod.bigtutorial.data.repository
 
-import android.content.Context
-import coder.behzod.bigtutorial.data.models.GetUserModel
-import coder.behzod.bigtutorial.data.models.SaveUserModel
-import coder.behzod.bigtutorial.data.shared_pref_instance.SharedPreference
+import coder.behzod.bigtutorial.data.storage.UserModel
+import coder.behzod.bigtutorial.data.storage.UserStorage
+import coder.behzod.bigtutorial.domain.models.GetUserModel
+import coder.behzod.bigtutorial.domain.models.SaveUserModel
 import coder.behzod.bigtutorial.domain.repository.UserRepository
 
-class UserRepositoryImpl(private val ctx:Context):UserRepository {
-    val sharedPref = SharedPreference(ctx)
-    override fun saveUser(user: SaveUserModel):Boolean {
-        sharedPref.saveString(user.name)
-        return user.name.isNotEmpty()
+
+class UserRepositoryImpl(private val userStorage: UserStorage):UserRepository {
+
+    override fun saveUser(saveUser: SaveUserModel):Boolean {
+        val user = UserModel(firstName = saveUser.name, lastName = "")
+        return userStorage.save(user)
     }
     override fun getUser(): GetUserModel {
-        val getData = sharedPref.getString()
-        val getLastName = sharedPref.getSecondString()
-        return GetUserModel(getData,getLastName)
+        val user = userStorage.get()
+        val getUser = GetUserModel(firstName = user.firstName, lastName = user.lastName)
+        return getUser
     }
 }

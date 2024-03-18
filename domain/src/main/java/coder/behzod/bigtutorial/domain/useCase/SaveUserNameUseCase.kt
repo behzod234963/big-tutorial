@@ -1,9 +1,10 @@
 package coder.behzod.bigtutorial.domain.useCase
 
-import coder.behzod.data.models.SaveUserModel
+import coder.behzod.bigtutorial.domain.models.SaveUserModel
+
 
 class SaveUserNameUseCase {
-    fun execute(name: coder.behzod.data.models.SaveUserModel):Boolean{
+    fun execute(name: SaveUserModel):Boolean{
         return name.name.isNotEmpty()
     }
 }

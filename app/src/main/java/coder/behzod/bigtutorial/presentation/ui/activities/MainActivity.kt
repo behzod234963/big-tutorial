@@ -8,15 +8,15 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import coder.behzod.bigtutorial.R
-import coder.behzod.data.models.GetUserModel
-import coder.behzod.data.models.SaveUserModel
+import coder.behzod.bigtutorial.domain.models.GetUserModel
+import coder.behzod.bigtutorial.domain.models.SaveUserModel
 import coder.behzod.bigtutorial.domain.useCase.GetUserNameUseCase
 import coder.behzod.bigtutorial.domain.useCase.SaveUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val getUserNameUseCase = coder.behzod.bigtutorial.domain.useCase.GetUserNameUseCase()
-    private val saveUserNameUseCase = coder.behzod.bigtutorial.domain.useCase.SaveUserNameUseCase()
+    private val getUserNameUseCase = GetUserNameUseCase()
+    private val saveUserNameUseCase = SaveUserNameUseCase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +33,12 @@ class MainActivity : AppCompatActivity() {
         val btnSaveData:Button = findViewById(R.id.btnSaveData)
 
         btnGetData.setOnClickListener {
-            val getData: coder.behzod.data.models.GetUserModel = getUserNameUseCase.execute()
+            val getData: GetUserModel = getUserNameUseCase.execute()
             tvGetData.text = "${getData.firstName} ${getData.lastName}"
         }
         btnSaveData.setOnClickListener {
             val text = etSaveData.text.toString()
-            val saveName = coder.behzod.data.models.SaveUserModel(text)
+            val saveName = SaveUserModel(text)
             val result = saveUserNameUseCase.execute(saveName)
             tvGetData.text = "Save result = $result"
         }

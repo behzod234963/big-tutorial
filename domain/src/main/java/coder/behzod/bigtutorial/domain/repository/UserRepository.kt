@@ -1,9 +1,8 @@
 package coder.behzod.bigtutorial.domain.repository
 
-import coder.behzod.data.models.GetUserModel
-import coder.behzod.data.models.SaveUserModel
-
+import coder.behzod.bigtutorial.domain.models.GetUserModel
+import coder.behzod.bigtutorial.domain.models.SaveUserModel
 interface UserRepository {
-    fun getUser(): coder.behzod.data.models.GetUserModel
-    fun saveUser(user: coder.behzod.data.models.SaveUserModel):Boolean
+    fun getUser(): GetUserModel
+    fun saveUser(user: SaveUserModel):Boolean
 }
