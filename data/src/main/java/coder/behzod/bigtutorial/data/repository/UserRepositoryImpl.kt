@@ -12,7 +12,7 @@ class UserRepositoryImpl(private val ctx:Context):UserRepository {
         sharedPref.saveString(user.name)
         return user.name.isNotEmpty()
     }
-    override fun getUser():GetUserModel {
+    override fun getUser(): GetUserModel {
         val getData = sharedPref.getString()
         val getLastName = sharedPref.getSecondString()
         return GetUserModel(getData,getLastName)

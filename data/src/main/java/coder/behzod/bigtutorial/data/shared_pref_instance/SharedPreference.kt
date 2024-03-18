@@ -12,7 +12,7 @@ class SharedPreference(private val ctx:Context) {
 
     @SuppressLint("CommitPrefEdits")
     fun saveString(str: String){
-        sharedPref.edit().putString(SHARED_PREFERENCE_STRING_KEY,str)
+        sharedPref.edit().putString(SHARED_PREFERENCE_STRING_KEY,str).apply()
     }
     fun getString():String{
         val getString = sharedPref.getString(SHARED_PREFERENCE_STRING_KEY,"")
