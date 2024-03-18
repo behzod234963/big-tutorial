@@ -14,8 +14,8 @@ class SharedPreferenceStorage(private val ctx:Context):UserStorage {
     val sharedPref = ctx.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
     @SuppressLint("CommitPrefEdits")
     override fun save(user: UserModel): Boolean {
-        sharedPref.edit().putString(FIRSTNAME_KEY,user.firstName)
-        sharedPref.edit().putString(LASTNAME_KEY,user.lastName)
+        sharedPref.edit().putString(FIRSTNAME_KEY,user.firstName).apply()
+        sharedPref.edit().putString(LASTNAME_KEY,user.lastName).apply()
         return true
     }
 

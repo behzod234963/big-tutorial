@@ -1,6 +1,7 @@
 package coder.behzod.bigtutorial.presentation.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,15 +9,25 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import coder.behzod.bigtutorial.R
+import coder.behzod.bigtutorial.data.repository.UserRepositoryImpl
+import coder.behzod.bigtutorial.data.storage.SharedPreferenceStorage
+import coder.behzod.bigtutorial.data.storage.UserStorage
 import coder.behzod.bigtutorial.domain.models.GetUserModel
 import coder.behzod.bigtutorial.domain.models.SaveUserModel
+import coder.behzod.bigtutorial.domain.repository.UserRepository
 import coder.behzod.bigtutorial.domain.useCase.GetUserNameUseCase
 import coder.behzod.bigtutorial.domain.useCase.SaveUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
-
-    private val getUserNameUseCase = GetUserNameUseCase()
-    private val saveUserNameUseCase = SaveUserNameUseCase()
+    private val repository by lazy(LazyThreadSafetyMode.NONE) {
+        UserRepositoryImpl(userStorage = SharedPreferenceStorage(ctx = applicationContext))
+    }
+    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) {
+        GetUserNameUseCase(repository)
+    }
+    private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) {
+        SaveUserNameUseCase(repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
