@@ -1,4 +1,4 @@
-package coder.behzod.bigtutorial.viewModel
+package coder.behzod.bigtutorial.presentation.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

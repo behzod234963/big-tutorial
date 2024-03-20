@@ -10,26 +10,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coder.behzod.bigtutorial.R
-import coder.behzod.bigtutorial.factory.MainViewModelFactory
-import coder.behzod.bigtutorial.viewModel.MainViewModel
+import coder.behzod.bigtutorial.presentation.viewModel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        viewModel = ViewModelProvider(
-            this,
-            MainViewModelFactory(this)
-        )[MainViewModel::class.java]
         initViews()
     }
 
     @SuppressLint("SetTextI18n")
     private fun initViews() {
+
         val tvGetData: TextView = findViewById(R.id.tvGetData)
         val btnGetData: Button = findViewById(R.id.btnGetData)
         val etSaveData: EditText = findViewById(R.id.etSaveData)

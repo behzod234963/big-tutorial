@@ -40,6 +40,9 @@ dependencies {
 
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(libs.koinCore)
+    implementation(libs.koinAndroid)
+    implementation(libs.koinTesting)
     implementation(libs.viewModel)
     implementation(libs.viewModelLiveData)
     implementation(libs.androidx.core.ktx)
