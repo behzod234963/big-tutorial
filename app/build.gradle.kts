@@ -40,6 +40,8 @@ dependencies {
 
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(libs.viewModel)
+    implementation(libs.viewModelLiveData)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
