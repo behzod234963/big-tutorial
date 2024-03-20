@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coder.behzod.bigtutorial.R
 import coder.behzod.bigtutorial.factory.MainViewModelFactory
@@ -20,12 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        initViews()
-
         viewModel = ViewModelProvider(
             this,
             MainViewModelFactory(this)
         )[MainViewModel::class.java]
+        initViews()
     }
 
     @SuppressLint("SetTextI18n")
@@ -35,13 +35,17 @@ class MainActivity : AppCompatActivity() {
         val etSaveData: EditText = findViewById(R.id.etSaveData)
         val btnSaveData: Button = findViewById(R.id.btnSaveData)
 
+        viewModel.liveData.observe(this, Observer {
+            tvGetData.text = it
+        })
+
         btnGetData.setOnClickListener {
-            tvGetData.text = viewModel.load()
+            viewModel.load()
         }
 
         btnSaveData.setOnClickListener {
             val text = etSaveData.text.toString()
-            val saveName = viewModel.save(text)
+            viewModel.save(text)
         }
     }
 }

@@ -1,6 +1,7 @@
 package coder.behzod.bigtutorial.viewModel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import coder.behzod.bigtutorial.domain.models.GetUserModel
 import coder.behzod.bigtutorial.domain.models.SaveUserModel
@@ -15,19 +16,20 @@ class MainViewModel(
         Log.e("AAA", "ViewModel created")
     }
 
+    val liveData = MutableLiveData<String>()
     override fun onCleared() {
         super.onCleared()
         Log.e("AAA", "ViewModel cleared")
     }
 
-    fun save(text: String): String {
+    fun save(text: String) {
         val saveName = SaveUserModel(text)
         val result = saveUseCase.execute(saveName)
-        return "Save result = $result"
+        liveData.value =  "Save result = $result"
     }
 
-    fun load(): String {
+    fun load() {
         val getData: GetUserModel = getUseCase.execute()
-        return "${getData.firstName} ${getData.lastName}"
+        liveData.value =  "${getData.firstName} ${getData.lastName}"
     }
 }
