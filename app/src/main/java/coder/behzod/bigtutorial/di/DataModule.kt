@@ -7,17 +7,19 @@ import coder.behzod.bigtutorial.data.storage.UserStorage
 import coder.behzod.bigtutorial.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class DataModule {
 
     @Provides
-    fun provideUserStorage(ctx:Context):UserStorage{
-        return SharedPreferenceStorage(ctx = ctx)
-    }
-
+    @Singleton
+    fun provideUserStorage(@ApplicationContext ctx:Context):UserStorage = SharedPreferenceStorage(ctx = ctx)
     @Provides
-    fun provideUserRepository(userStorage: UserStorage):UserRepository{
-        return UserRepositoryImpl(userStorage = userStorage)
-    }
+    @Singleton
+    fun provideUserRepository(userStorage: UserStorage):UserRepository = UserRepositoryImpl(userStorage)
 }

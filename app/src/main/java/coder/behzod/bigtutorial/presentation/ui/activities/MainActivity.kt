@@ -1,26 +1,21 @@
 package coder.behzod.bigtutorial.presentation.ui.activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import coder.behzod.bigtutorial.R
-import coder.behzod.bigtutorial.app.BigTutorialApp
-import coder.behzod.bigtutorial.presentation.factory.MainViewModelFactory
 import coder.behzod.bigtutorial.presentation.viewModel.MainViewModel
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory:MainViewModelFactory
-    lateinit var viewModel: MainViewModel
-
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,11 +23,8 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initViews() {
 
-        (applicationContext as BigTutorialApp).appComponent.inject(this)
-        viewModel = ViewModelProvider(this,viewModelFactory)[MainViewModel::class.java]
         val tvGetData: TextView = findViewById(R.id.tvGetData)
         val btnGetData: Button = findViewById(R.id.btnGetData)
         val etSaveData: EditText = findViewById(R.id.etSaveData)

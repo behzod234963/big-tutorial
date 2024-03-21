@@ -6,13 +6,13 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
-material = "1.10.0"
-activity = "1.8.0"
+material = "1.11.0"
+activity = "1.8.2"
 constraintlayout = "2.1.4"
 jetbrainsKotlinJvm = "1.9.0"
 lifecycleVersion = "2.7.0"
 koinVersion = "3.1.2"
-javaxVersion = "1"
+fragmentKTXversion = "1.6.2"
 daggerHiltVersion = "2.50"
 
 [libraries]
@@ -29,11 +29,13 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-daggerHilt = {group = "com.google.dagger",name = "dagger",version.ref = "daggerHiltVersion"}
-daggerHiltCompiler = {group = "com.google.dagger",name = "dagger-compiler",version.ref = "daggerHiltVersion"}
-javax = {group = "javax.inject",name = "javax.inject",version.ref = "javaxVersion"}
+daggerHilt = {group = "com.google.dagger",name = "hilt-android",version.ref = "daggerHiltVersion"}
+daggerHiltCompiler = {group = "com.google.dagger",name = "hilt-compiler",version.ref = "daggerHiltVersion"}
+daggerHiltGradlePlugin = {group = "com.google.dagger",name = "hilt-android-gradle-plugin",version.ref = "daggerHiltVersion"}
+fragmentKTX = {group = "androidx.fragment",name = "fragment-ktx",version.ref = "fragmentKTXversion"}
 
 [plugins]
+daggerHiltPlugin = {id = "com.google.dagger.hilt.android",version.ref = "daggerHiltVersion"}
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

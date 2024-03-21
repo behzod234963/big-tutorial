@@ -8,8 +8,11 @@ import coder.behzod.bigtutorial.domain.models.GetUserModel
 import coder.behzod.bigtutorial.domain.models.SaveUserModel
 import coder.behzod.bigtutorial.domain.useCase.GetUserNameUseCase
 import coder.behzod.bigtutorial.domain.useCase.SaveUserNameUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val saveUseCase: SaveUserNameUseCase,
     private val getUseCase: GetUserNameUseCase
 ) : ViewModel() {
