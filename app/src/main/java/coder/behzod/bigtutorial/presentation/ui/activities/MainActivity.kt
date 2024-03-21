@@ -10,12 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coder.behzod.bigtutorial.R
+import coder.behzod.bigtutorial.app.BigTutorialApp
+import coder.behzod.bigtutorial.presentation.factory.MainViewModelFactory
 import coder.behzod.bigtutorial.presentation.viewModel.MainViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModel<MainViewModel>()
+    @Inject
+    lateinit var viewModelFactory:MainViewModelFactory
+    lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun initViews() {
 
+        (applicationContext as BigTutorialApp).appComponent.inject(this)
+        viewModel = ViewModelProvider(this,viewModelFactory)[MainViewModel::class.java]
         val tvGetData: TextView = findViewById(R.id.tvGetData)
         val btnGetData: Button = findViewById(R.id.btnGetData)
         val etSaveData: EditText = findViewById(R.id.etSaveData)

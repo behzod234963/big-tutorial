@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -37,7 +38,6 @@ android {
 
 dependencies {
 
-
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(libs.koinCore)
@@ -53,4 +53,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //        Dagger Hilt
+    implementation (libs.daggerHilt)
+    implementation(libs.javax)
+    kapt (libs.daggerHiltCompiler)
 }

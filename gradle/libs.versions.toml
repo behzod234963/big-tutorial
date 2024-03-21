@@ -1,5 +1,5 @@
 [versions]
-agp = "8.3.0"
+agp = "8.3.1"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
 junit = "4.13.2"
@@ -12,6 +12,8 @@ constraintlayout = "2.1.4"
 jetbrainsKotlinJvm = "1.9.0"
 lifecycleVersion = "2.7.0"
 koinVersion = "3.1.2"
+javaxVersion = "1"
+daggerHiltVersion = "2.50"
 
 [libraries]
 koinCore = {group = "io.insert-koin",name = "koin-core",version.ref = "koinVersion"}
@@ -27,6 +29,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+daggerHilt = {group = "com.google.dagger",name = "dagger",version.ref = "daggerHiltVersion"}
+daggerHiltCompiler = {group = "com.google.dagger",name = "dagger-compiler",version.ref = "daggerHiltVersion"}
+javax = {group = "javax.inject",name = "javax.inject",version.ref = "javaxVersion"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

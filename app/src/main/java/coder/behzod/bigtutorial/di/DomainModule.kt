@@ -1,14 +1,21 @@
 package coder.behzod.bigtutorial.di
 
+import coder.behzod.bigtutorial.domain.repository.UserRepository
 import coder.behzod.bigtutorial.domain.useCase.GetUserNameUseCase
 import coder.behzod.bigtutorial.domain.useCase.SaveUserNameUseCase
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
 
-val domainModule = module {
-    factory<GetUserNameUseCase> {
-        GetUserNameUseCase(repository = get())
+@Module
+class DomainModule {
+
+    @Provides
+    fun provideGetUseCase(repository: UserRepository):GetUserNameUseCase{
+        return GetUserNameUseCase(repository)
     }
-    factory<SaveUserNameUseCase> {
-        SaveUserNameUseCase(repository = get())
+
+    @Provides
+    fun provideSaveUseCase(repository: UserRepository):SaveUserNameUseCase{
+        return SaveUserNameUseCase(repository)
     }
 }
